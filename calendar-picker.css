@@ -1,6 +1,6 @@
 .gongonzacal{
 	width: 600px;
-	border: thin solid black;
+	border: 1px solid black;
 	margin: 10px;
 	border-radius: 3px;
 	background-color: #FAFAFA;
@@ -16,6 +16,11 @@
 	width: 75px;
 	float: left;
 	text-align: center;
+	cursor: pointer;
+}
+.gongonzacal #top_bar #prev_nav a,
+.gongonzacal #top_bar #next_nav a{
+	display: block;
 }
 .gongonzacal #top_bar #title {
 	width: 450px;
@@ -26,6 +31,7 @@
 }
 
 .gongonzacal #label_bar{
+	display: block;
 	width: 554px;
 	margin: 0px auto 5px auto;
 	font-weight: bold;
@@ -44,8 +50,8 @@
 
 .gongonzacal #calendar_cells .cal_cell{
 	float: left;
-	border-left: thin solid black;
-	border-top: thin solid black;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
 	width: 78px;
 	height: 50px;
 
@@ -59,10 +65,10 @@
 }
 
 .gongonzacal #calendar_cells .right_cell{
-	border-right: thin solid black;
+	border-right: 1px solid black;
 }
 .gongonzacal #calendar_cells .bottom_cell{
-	border-bottom: thin solid black;
+	border-bottom: 1px solid black;
 }
 
 .gongonzacal #calendar_cells .date_selected{

@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="calendar-picker.css" />
 		<script src="calendar-picker.js"></script>
@@ -6,9 +6,9 @@
 	<body>
 		<div id="calendar" class="gongonzacal" style="margin-left: auto; margin-right: auto;">
 			<div id="top_bar">
-				<div id="prev_nav"><</div>
+				<div id="prev_nav"><a onclick="gongonza_cal.previous_month(); return false;"><img src="left_arrow.png" /></a></div>
 				<div id="title"></div>
-				<div id="next_nav">></div>
+				<div id="next_nav"><a onclick="gongonza_cal.next_month(); return false;"><img src="right_arrow.png" /></a></div>
 			</div>
 			<div id="label_bar">
 				<div id="label0" class="lab_cell">Sun.</div>
@@ -72,7 +72,8 @@
 			</div>
 		</div>
 		<script>
-			g = new gongonzacal("calendar", function(date){ alert(date);});
+			g = new gongonzacal("calendar", function(date){ document.getElementById("output").innerHTML += date + "<br />"; });
 		</script>
+		<div id="output"></div>
 	</body>
 </html>

@@ -1,3 +1,16 @@
+//Implement indexOf for IE
+if(!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function(needle) {
+        for(var i = 0; i < this.length; i++) {
+            if(this[i] === needle) {
+                return i;
+            }
+        }
+        return -1;
+    };
+}
+
+
 function gongonzacal(container, onpick){
 	this.initialized = false;
 	this.onpick = onpick;
@@ -8,7 +21,6 @@ function gongonzacal(container, onpick){
 	this.selected_cell = null;
 	this.current_date = new Date();
 	this.current_date.setDate(1);
-	this.current_date.setMonth(3);
 	this.calendar_cells = []; //matrix of all the cell nodes;
 	this.months_lookup = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -56,6 +68,30 @@ gongonzacal.prototype.get_cell_value = function(row, col){
 	return retval;
 }
 
+gongonzacal.prototype.set_month = function(month){
+	this.current_date.setMonth(month);
+	this.current_date.setDate(1);
+	this.update_calendar();
+}
+
+gongonzacal.prototype.next_month = function(){
+	if(this.current_date.getMonth() == 11){
+		this.current_date.setFullYear(this.current_date.getFullYear() + 1);
+	}
+	this.set_month((this.current_date.getMonth() + 1) % 12);
+}
+
+gongonzacal.prototype.previous_month = function(){
+	if(this.current_date.getMonth() == 0){
+		this.current_date.setFullYear(this.current_date.getFullYear() - 1);
+		this.set_month(11);
+	}
+	else{
+		this.set_month(this.current_date.getMonth() - 1);
+	}
+}
+
+
 gongonzacal.prototype.select_cell = function(row, col){
 	var cell = this.calendar_cells[row][col];
 	var val = this.get_cell_value(row, col);
@@ -70,9 +106,7 @@ gongonzacal.prototype.select_cell = function(row, col){
 
 		//Mark the current cell
 		this.selected_cell = cell;
-		if(!cell.classList.contains("date_selected")){
-			cell.classList.add("date_selected");
-		}
+		this.add_select_class(cell);
 
 		if(this.onpick != null){
 			this.onpick(this.selected_date);
@@ -80,12 +114,28 @@ gongonzacal.prototype.select_cell = function(row, col){
 	}
 }
 
-gongonzacal.prototype.clear_selected_cell = function(){
-	if(this.selected_cell != null){
-		if(this.selected_cell.classList.contains("date_selected")){
-			this.selected_cell.classList.remove("date_selected");
+gongonzacal.prototype.add_select_class = function(cell){
+	var class_list = cell.className.split(" ");
+	if(class_list.indexOf("date_selected") == -1){
+		class_list.push("date_selected");
+		cell.className = class_list.join(" ");
+	}
+}
+
+gongonzacal.prototype.remove_select_class = function(cell){
+	if(cell != null){
+		var class_list = cell.className.split(" ");
+		var selected_index = class_list.indexOf("date_selected");
+
+		if(selected_index > -1){
+			class_list.splice(selected_index, 1);
+			cell.className = class_list.join(" ");
 		}
 	}
+}
+
+gongonzacal.prototype.clear_selected_cell = function(){
+	this.remove_select_class(this.selected_cell);
 	this.selected_cell = null;
 }
 
@@ -93,6 +143,14 @@ gongonzacal.prototype.update_calendar = function(){
 	var start_date = this.current_date.getDay();
 	var current_day = 1;
 	var end_day = this.days_in_month(this.current_date.getMonth(), this.current_date.getFullYear());
+	var same_month_year = false;
+	if(this.selected_date != null){
+		same_month_year = (this.current_date.getFullYear() == this.selected_date.getFullYear() &&
+						   this.current_date.getMonth() == this.selected_date.getMonth());
+	}
+
+	this.clear_selected_cell();
+
 
 	//Set days preceding start date to empty
 	for(var i = 0; i < start_date; i++){
@@ -102,6 +160,19 @@ gongonzacal.prototype.update_calendar = function(){
 	//Fill in the rest of the first week
 	for(var i = start_date; i < 7; i++){
 		this.set_cell_text(0, i, current_day);
+
+		if(same_month_year){
+			if(current_day == this.selected_date.getDate()){
+				this.add_select_class(this.calendar_cells[0][i]);
+			}
+			else{
+				this.remove_select_class(this.calendar_cells[0][i]);
+			}
+		}
+		else{
+			this.remove_select_class(this.calendar_cells[0][i]);
+		}
+
 		current_day++;
 	}
 
@@ -110,6 +181,20 @@ gongonzacal.prototype.update_calendar = function(){
 		for(var j = 0; j < 7; j++){
 			if(current_day <= end_day){
 				this.set_cell_text(i, j, current_day);
+
+				
+				if(same_month_year){
+					if(current_day == this.selected_date.getDate()){
+						this.add_select_class(this.calendar_cells[i][j]);
+					}
+					else{
+						this.remove_select_class(this.calendar_cells[0][i]);
+					}
+				}
+				else{
+					this.remove_select_class(this.calendar_cells[0][i]);
+				}
+
 				current_day++;
 			}else{
 				this.set_cell_text(i, j, "");

@@ -1,0 +1,73 @@
+.gongonzacal{
+	width: 600px;
+	border: thin solid black;
+	margin: 10px;
+	border-radius: 3px;
+	background-color: #FAFAFA;
+	font-family: arial;
+}
+.gongonzacal #top_bar{
+	height: 30px;
+	line-height: 30px;
+	margin: 15px 0 40px 0;
+}
+.gongonzacal #top_bar #prev_nav,
+.gongonzacal #top_bar #next_nav {
+	width: 75px;
+	float: left;
+	text-align: center;
+}
+.gongonzacal #top_bar #title {
+	width: 450px;
+	float: left;
+	font-size: 28px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.gongonzacal #label_bar{
+	width: 554px;
+	margin: 0px auto 5px auto;
+	font-weight: bold;
+}
+
+.gongonzacal #label_bar .lab_cell{
+	float: left;
+	width: 79px;
+	text-align: center;
+}
+
+.gongonzacal #calendar_cells{
+	width: 554px;
+	margin: 0px auto 20px auto;
+}
+
+.gongonzacal #calendar_cells .cal_cell{
+	float: left;
+	border-left: thin solid black;
+	border-top: thin solid black;
+	width: 78px;
+	height: 50px;
+
+	text-align: center;
+	font-size: 25px;
+	line-height: 50px;
+}
+
+.gongonzacal #calendar_cells .right_cell{
+	border-right: thin solid black;
+}
+.gongonzacal #calendar_cells .bottom_cell{
+	border-bottom: thin solid black;
+}
+
+.gongonzacal #calendar_cells .selected{
+	background-color: #AAAAFF;
+	color: white;
+	font-weight: bold;
+}
+.gongonzacal #calendar_cells .cal_cell:hover {
+	background-color: #3377FF;
+	font-weight: bold;
+	color: white;
+}

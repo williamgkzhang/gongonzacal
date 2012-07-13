@@ -53,6 +53,10 @@
 	font-size: 25px;
 	line-height: 50px;
 }
+.gongonzacal #calendar_cells .cal_cell a.cell_selector{
+	display: block;
+	cursor: pointer;
+}
 
 .gongonzacal #calendar_cells .right_cell{
 	border-right: thin solid black;
@@ -61,7 +65,7 @@
 	border-bottom: thin solid black;
 }
 
-.gongonzacal #calendar_cells .selected{
+.gongonzacal #calendar_cells .date_selected{
 	background-color: #AAAAFF;
 	color: white;
 	font-weight: bold;

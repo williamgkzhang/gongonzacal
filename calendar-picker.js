@@ -3,7 +3,16 @@ function gongonzacal(container, onpick){
 	this.onpick = onpick;
 	this.container_name = container;
 	this.root = document.getElementById(container);
+	window.gongonza_cal = this;
+	this.selected_date = null;
+	this.selected_cell = null;
+	this.current_date = new Date();
+	this.current_date.setDate(1);
+	this.current_date.setMonth(3);
+	this.calendar_cells = []; //matrix of all the cell nodes;
+	this.months_lookup = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+	// Return if we can't find the container
 	if(this.root != null){
 		this.initialized = true;
 	}
@@ -11,9 +20,11 @@ function gongonzacal(container, onpick){
 		return false;
 	}
 
+	//Set the Title Node
 	this.title_node = get_child_by_id(get_child_by_id(this.root, "top_bar"), "title");
+
+	//Set the Calendar Cells
 	var cell_container = get_child_by_id(this.root, "calendar_cells");
-	this.calendar_cells = []; //matrix of all the cell nodes;
 	for(var i = 0; i < 6; i++){
 		var row = [];
 		for(var j = 0; j < 7; j++){
@@ -23,16 +34,7 @@ function gongonzacal(container, onpick){
 		this.calendar_cells.push(row);
 	}
 
-
-	this.selected_date = null;
-	this.selected_cell = null;
-
-	this.current_date = new Date();
-	this.current_date.setDate(1);
-
-
-	this.months_lookup = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
+	//Populate the Calendar
 	this.update_calendar();
 
 }
@@ -43,9 +45,50 @@ gongonzacal.prototype.get_root = function(){
 gongonzacal.prototype.set_title = function(title){
 	this.title_node.innerText = title;
 }
-gongonzacal.prototype.set_cell_text = function(i, j, text){
-	this.calendar_cells[i][j].innerText = text;
+gongonzacal.prototype.set_cell_text = function(row, col, text){
+	var link = this.calendar_cells[row][col].firstChild;
+	link.innerText = text;
 }
+gongonzacal.prototype.get_cell_value = function(row, col){
+	var retval = NaN;
+	var link = this.calendar_cells[row][col].firstChild;
+	retval = parseInt(link.innerText);
+	return retval;
+}
+
+gongonzacal.prototype.select_cell = function(row, col){
+	var cell = this.calendar_cells[row][col];
+	var val = this.get_cell_value(row, col);
+
+	if (!isNaN(val)){ //could add further bound checking here
+		this.selected_date = new Date();
+		this.selected_date.setDate(val);
+		this.selected_date.setMonth(this.current_date.getMonth());
+		this.selected_date.setFullYear(this.current_date.getFullYear());
+
+		this.clear_selected_cell();
+
+		//Mark the current cell
+		this.selected_cell = cell;
+		if(!cell.classList.contains("date_selected")){
+			cell.classList.add("date_selected");
+		}
+
+		if(this.onpick != null){
+			this.onpick(this.selected_date);
+		}
+	}
+}
+
+gongonzacal.prototype.clear_selected_cell = function(){
+	if(this.selected_cell != null){
+		if(this.selected_cell.classList.contains("date_selected")){
+			this.selected_cell.classList.remove("date_selected");
+		}
+	}
+	this.selected_cell = null;
+}
+
 gongonzacal.prototype.update_calendar = function(){
 	var start_date = this.current_date.getDay();
 	var current_day = 1;
@@ -138,4 +181,5 @@ function get_child_by_id(root, child_id){
 	}
 	return child;
 }
+
 

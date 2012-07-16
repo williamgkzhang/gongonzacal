@@ -1,75 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>
+<!DOCTYPE html>
+<html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="calendar-picker.css" />
 		<script src="calendar-picker.js"></script>
 	</head>
 	<body>
 		<div id="calendar" class="gongonzacal" style="margin-left: auto; margin-right: auto;">
-			<div id="top_bar">
-				<div id="prev_nav"><a onclick="gongonza_cal.previous_month(); return false;"><img src="left_arrow.png" /></a></div>
-				<div id="title"></div>
-				<div id="next_nav"><a onclick="gongonza_cal.next_month(); return false;"><img src="right_arrow.png" /></a></div>
-			</div>
-			<div id="label_bar">
-				<div id="label0" class="lab_cell">Sun.</div>
-				<div id="label1" class="lab_cell">Mon.</div>
-				<div id="label2" class="lab_cell">Tue.</div>
-				<div id="label3" class="lab_cell">Wed.</div>
-				<div id="label4" class="lab_cell">Thur.</div>
-				<div id="label5" class="lab_cell">Fri.</div>
-				<div id="label6" class="lab_cell">Sat.</div>
-				<div style="clear: both"></div>
-			</div>
-			<div id="calendar_cells">
-				<div id="cell00" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,0); return false;"></a></div>
-				<div id="cell01" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,1); return false;"></a></div>
-				<div id="cell02" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,2); return false;"></a></div>
-				<div id="cell03" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,3); return false;"></a></div>
-				<div id="cell04" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,4); return false;"></a></div>
-				<div id="cell05" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,5); return false;"></a></div>
-				<div id="cell06" class="cal_cell right_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(0,6); return false;"></a></div>
-				<div style="clear: both"></div>
-				<div id="cell10" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,0); return false;"></a></div>
-				<div id="cell11" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,1); return false;"></a></div>
-				<div id="cell12" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,2); return false;"></a></div>
-				<div id="cell13" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,3); return false;"></a></div>
-				<div id="cell14" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,4); return false;"></a></div>
-				<div id="cell15" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,5); return false;"></a></div>
-				<div id="cell16" class="cal_cell right_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(1,6); return false;"></a></div>
-				<div style="clear: both"></div>
-				<div id="cell20" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,0); return false;"></a></div>
-				<div id="cell21" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,1); return false;"></a></div>
-				<div id="cell22" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,2); return false;"></a></div>
-				<div id="cell23" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,3); return false;"></a></div>
-				<div id="cell24" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,4); return false;"></a></div>
-				<div id="cell25" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,5); return false;"></a></div>
-				<div id="cell26" class="cal_cell right_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(2,6); return false;"></a></div>
-				<div style="clear: both"></div>
-				<div id="cell30" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,0); return false;"></a></div>
-				<div id="cell31" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,1); return false;"></a></div>
-				<div id="cell32" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,2); return false;"></a></div>
-				<div id="cell33" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,3); return false;"></a></div>
-				<div id="cell34" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,4); return false;"></a></div>
-				<div id="cell35" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,5); return false;"></a></div>
-				<div id="cell36" class="cal_cell right_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(3,6); return false;"></a></div>
-				<div style="clear: both"></div>
-				<div id="cell40" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,0); return false;"></a></div>
-				<div id="cell41" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,1); return false;"></a></div>
-				<div id="cell42" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,2); return false;"></a></div>
-				<div id="cell43" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,3); return false;"></a></div>
-				<div id="cell44" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,4); return false;"></a></div>
-				<div id="cell45" class="cal_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,5); return false;"></a></div>
-				<div id="cell46" class="cal_cell right_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(4,6); return false;"></a></div>
-				<div style="clear: both"></div>
-				<div id="cell50" class="cal_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,0); return false;"></a></div>
-				<div id="cell51" class="cal_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,1); return false;"></a></div>
-				<div id="cell52" class="cal_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,2); return false;"></a></div>
-				<div id="cell53" class="cal_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,3); return false;"></a></div>
-				<div id="cell54" class="cal_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,4); return false;"></a></div>
-				<div id="cell55" class="cal_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,5); return false;"></a></div>
-				<div id="cell56" class="cal_cell right_cell bottom_cell"><a class="cell_selector" onclick="gongonza_cal.select_cell(5,6); return false;"></a></div>
-				<div style="clear: both"></div>
-			</div>
 		</div>
 		<script>
 			g = new gongonzacal("calendar", function(date){ document.getElementById("output").innerHTML += date + "<br />"; });
